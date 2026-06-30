@@ -23,7 +23,7 @@ spec:
   {{- if .Values.podManagementPolicy }}
   podManagementPolicy: {{ .Values.podManagementPolicy | quote }}
   {{- end }}
-  serviceName: {{ template "common.names.fullname" . }}
+  serviceName: {{ template "common.names.fullname" . }}-service
   {{- if .Values.updateStrategy }}
   updateStrategy: {{- toYaml .Values.updateStrategy | nindent 4 }}
   {{- end }}

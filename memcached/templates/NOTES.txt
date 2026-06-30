@@ -25,7 +25,7 @@ APP VERSION: {{ .Chart.AppVersion }}
 
 Memcached can be accessed via port {{ .Values.service.ports.memcached }} on the following DNS name from within your cluster:
 
-    {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}
+    {{ include "common.names.fullname" . }}-service.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}
 
 {{- if eq .Values.architecture "high-availability" }}
 
