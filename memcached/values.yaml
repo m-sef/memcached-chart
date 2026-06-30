@@ -136,7 +136,22 @@ command: []
 ##   - -I <maxItemSize>
 ##   - -vv
 ##
-args: []
+args:
+  - /run.sh
+  - -t
+  - "20"
+  - -m
+  - 32G
+  - -c
+  - "8192"
+  - -b
+  - "8192"
+  - -p
+  - "11211"
+  - -u
+  - nobody
+  - -B
+  - binary
 ## @param extraEnvVars Array with extra environment variables to add to Memcached nodes
 ## e.g:
 ## extraEnvVars:
@@ -231,7 +246,13 @@ resourcesPreset: "nano"
 ##     cpu: 3
 ##     memory: 1024Mi
 ##
-resources: {}
+resources:
+  requests:
+    cpu: "19.9"
+    memory: "64Gi"
+  limits:
+    cpu: "19.9"
+    memory: "64Gi"
 ## Configure Pods Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
 ## @param podSecurityContext.enabled Enabled Memcached pods' Security Context
