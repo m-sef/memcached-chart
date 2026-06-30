@@ -498,10 +498,9 @@ service:
   ##
   trafficDistribution: ""
   ## @param service.clusterIP Memcached service Cluster IP
-  ## e.g.:
-  ## clusterIP: None
+  ## Set to None for a headless service, enabling per-pod DNS for StatefulSet replicas.
   ##
-  clusterIP: ""
+  clusterIP: "None"
   ## @param service.loadBalancerIP Memcached service Load Balancer IP
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
   ##
@@ -523,6 +522,18 @@ service:
   ## @param service.extraPorts Extra ports to expose in the Memcached service (normally used with the `sidecar` value)
   ##
   extraPorts: []
+## ClusterIP service for load-balanced access across all replicas
+## The default `service` above is headless (see service.clusterIP) and used for the
+## StatefulSet's stable per-pod DNS. This service provides a single, load-balanced
+## endpoint that spreads traffic across all Memcached pods.
+##
+clusterIPService:
+  ## @param clusterIPService.enabled Create a ClusterIP service in front of all Memcached replicas
+  ##
+  enabled: true
+  ## @param clusterIPService.annotations Additional custom annotations for the ClusterIP service
+  ##
+  annotations: {}
 ## Network Policy configuration
 ## ref: https://kubernetes.io/docs/concepts/services-networking/network-policies/
 ##
